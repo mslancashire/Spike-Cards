@@ -25,18 +25,18 @@ namespace Test
 
             // setup test cards
             this.listOfTestCards = new List<Card>();
-            this.listOfTestCards.Add(new BasicCard("Test 1", 1, "This is the first test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 2", 2, "This is the secound test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 3", 3, "This is the third test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 4", 4, "This is the fourth test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 5", 5, "This is the fith test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 6", 6, "This is the sixth test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 7", 7, "This is the seventh test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 8", 8, "This is the eighth test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 9", 9, "This is the ninth test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 10", 10, "This is the tenth test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 11", 11, "This is the eventh test card"));
-            this.listOfTestCards.Add(new BasicCard("Test 12", 12, "This is the twelfth test card"));
+            this.listOfTestCards.Add(new BasicCard("Test 1", 1, "This is the first test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 2", 2, "This is the secound test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 3", 3, "This is the third test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 4", 4, "This is the fourth test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 5", 5, "This is the fith test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 6", 6, "This is the sixth test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 7", 7, "This is the seventh test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 8", 8, "This is the eighth test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 9", 9, "This is the ninth test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 10", 10, "This is the tenth test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 11", 11, "This is the eventh test card."));
+            this.listOfTestCards.Add(new BasicCard("Test 12", 12, "This is the twelfth test card."));
 
             // setup layout tests
             this.layoutTests = new List<LayoutTest>();
