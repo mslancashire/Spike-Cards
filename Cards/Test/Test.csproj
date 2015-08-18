@@ -48,7 +48,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -56,13 +58,19 @@
     <Compile Include="CardLayouts\LayoutTest.cs" />
     <Compile Include="CheckCardLayouts.cs" />
     <Compile Include="CheckCards.cs" />
+    <Compile Include="CheckCommands.cs" />
     <Compile Include="CheckConsoleCommands.cs" />
+    <Compile Include="MockFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CheckCardCollection.cs" />
     <Compile Include="CheckDeck.cs" />
     <Compile Include="CheckLayoutSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cards\Cards.csproj">
+      <Project>{829d94e9-5b97-4aff-9af1-6276df49ad22}</Project>
+      <Name>Cards</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{52395c81-0d38-481e-82be-35dd9aa0646f}</Project>
       <Name>Domain</Name>

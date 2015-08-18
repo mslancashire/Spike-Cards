@@ -12,51 +12,15 @@ namespace Test
     [TestClass]
     public class CheckCardLayouts
     {
-        private List<LayoutTest> layoutTests;
-        private List<Card> listOfTestCards;
-        
-        [TestInitialize]
-        public void SetupTests()
-        {
-            // setup layouts
-            var layoutSettingsDefault = LayoutSettings.GetDefaultLayout();
-            var layoutSettingsBoxed = LayoutSettings.GetBoxedLayout();
-            var layoutSettingsDoubleBoxed = LayoutSettings.GetDoubleBoxedLayout();
-
-            // setup test cards
-            this.listOfTestCards = new List<Card>();
-            this.listOfTestCards.Add(new BasicCard("Test 1", 1, "This is the first test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 2", 2, "This is the secound test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 3", 3, "This is the third test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 4", 4, "This is the fourth test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 5", 5, "This is the fith test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 6", 6, "This is the sixth test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 7", 7, "This is the seventh test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 8", 8, "This is the eighth test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 9", 9, "This is the ninth test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 10", 10, "This is the tenth test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 11", 11, "This is the eventh test card."));
-            this.listOfTestCards.Add(new BasicCard("Test 12", 12, "This is the twelfth test card."));
-
-            // setup layout tests
-            this.layoutTests = new List<LayoutTest>();
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-Default-FullLine.txt", NumberOfCardsForTest = 5, LayoutSettings = layoutSettingsDefault });
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-Default-Missing.txt", NumberOfCardsForTest = 1, LayoutSettings = layoutSettingsDefault });
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-Default-MultipleLines.txt", NumberOfCardsForTest = 9, LayoutSettings = layoutSettingsDefault });
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-Boxed-FullLine.txt", NumberOfCardsForTest = 5, LayoutSettings = layoutSettingsBoxed });
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-Boxed-Missing.txt", NumberOfCardsForTest = 4, LayoutSettings = layoutSettingsBoxed });
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-Boxed-MultipleLines.txt", NumberOfCardsForTest = 9, LayoutSettings = layoutSettingsBoxed });
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-DoubleBoxed-FullLine.txt", NumberOfCardsForTest = 5, LayoutSettings = layoutSettingsDoubleBoxed });
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-DoubleBoxed-Missing.txt", NumberOfCardsForTest = 3, LayoutSettings = layoutSettingsDoubleBoxed });
-            this.layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-DoubleBoxed-MultipleLines.txt", NumberOfCardsForTest = 7, LayoutSettings = layoutSettingsDoubleBoxed });
-        }
-
         [TestMethod]
         public void TestCardLayouts()
         {
-            foreach(LayoutTest layoutTest in this.layoutTests)
+            List<Card> listOfTestCards = MockFactory.GetInstanceOfTestCards;
+            List<LayoutTest> layoutTests = MockFactory.GetInstanceOfTestLayouts;
+
+            foreach (LayoutTest layoutTest in layoutTests)
             {                
-                List<Card> testCards = new List<Card>(this.listOfTestCards.GetRange(0, layoutTest.NumberOfCardsForTest));
+                List<Card> testCards = new List<Card>(listOfTestCards.GetRange(0, layoutTest.NumberOfCardsForTest));
                 ICardsDisplay cardDisplay = new CardLayoutReader(testCards, layoutTest.LayoutSettings);
 
                 var filePath = Path.Combine(Environment.CurrentDirectory, "CardLayouts", layoutTest.FileForComparison);
