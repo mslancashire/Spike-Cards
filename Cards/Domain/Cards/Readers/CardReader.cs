@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Cards.Readers
 {
-    public class CardLayoutReader : BaseLayoutReader, ICardsDisplay
+    public class CardReader : BaseCardReader, ICardReader
     {
-        public CardLayoutReader(List<Card> cardsToRead)
+        public CardReader(List<Card> cardsToRead)
             : base(cardsToRead)
         { }
 
-        public CardLayoutReader(List<Card> cardsToRead, LayoutSettings layoutSettings)
+        public CardReader(List<Card> cardsToRead, LayoutSettings layoutSettings)
             : base(cardsToRead, layoutSettings)
         { }
 
@@ -24,7 +24,7 @@ namespace Domain.Cards.Readers
 
             while (indexOfReadCard < this.CardsToRead.Count)
             {
-                var cardDisplay = new CardLayoutReader(this.CardsToRead.GetRange(indexOfReadCard, this.CountOfNextCardBatch(indexOfReadCard)), this.LayoutSettings);
+                var cardDisplay = new CardReader(this.CardsToRead.GetRange(indexOfReadCard, this.CountOfNextCardBatch(indexOfReadCard)), this.LayoutSettings);
                 cardOuputBuilder.Append(cardDisplay.ReadCards());
                 indexOfReadCard += this.LayoutSettings.NumberOfCardsPerLine;
             }            

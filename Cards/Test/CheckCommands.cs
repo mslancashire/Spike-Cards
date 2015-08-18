@@ -12,16 +12,10 @@ namespace Test
     {
         private CommandParser testCommandParser;
         private CommandParser normalCommadParser;
-        private Stream outputStream;
 
         [TestInitialize]
         public void SetupCommandParser()
         {
-            /*
-            outputStream = new MemoryStream();
-           
-            testCommandParser = new CommandParser(outputStream, Console.OutputEncoding, true);            
-            */
             testCommandParser = new CommandParser();
             testCommandParser.CommandNames = new List<String> { "Test1", "Test2", "Test3", "Exit" };
             normalCommadParser = new CommandParser();
@@ -105,16 +99,6 @@ namespace Test
             }
 
             Assert.AreEqual(11, lineNumber, "Ensure we output the correct number of lines.");
-
-        }
-
-        ~CheckCommands()
-        {
-            if (outputStream != null)
-            {
-                this.outputStream.Close();
-                this.outputStream.Dispose();
-            }
-        }
+        }       
     }
 }

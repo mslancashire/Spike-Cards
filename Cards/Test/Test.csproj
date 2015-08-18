@@ -99,6 +99,7 @@
     <Content Include="CardLayouts\TestCardLayout-Default-MultipleLines.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="CardLayouts\TestCardLayout-DetailedCard-MultipleLines.txt" />
     <Content Include="CardLayouts\TestCardLayout-DoubleBoxed-FullLine.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

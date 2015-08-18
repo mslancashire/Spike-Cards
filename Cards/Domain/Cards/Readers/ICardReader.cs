@@ -10,7 +10,7 @@ namespace Domain.Cards.Readers
     /// <summary>
     /// Providers a view on a list of cards.
     /// </summary>
-    public interface ICardsDisplay
+    public interface ICardReader
     {        
         /// <summary>
         /// Providers a output string for a view on the provider list of cards.

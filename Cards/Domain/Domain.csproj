@@ -44,13 +44,25 @@
     <Compile Include="Cards\BlankCard.cs" />
     <Compile Include="Cards\Card.cs" />
     <Compile Include="Cards\GreekCardNames.cs" />
-    <Compile Include="Cards\Readers\BaseLayoutReader.cs" />
-    <Compile Include="Cards\Readers\CardLayoutReader.cs" />
-    <Compile Include="Cards\Readers\ICardsDisplay.cs" />
+    <Compile Include="Cards\Readers\BaseCardReader.cs" />
+    <Compile Include="Cards\Readers\CardReader.cs" />
+    <Compile Include="Cards\Readers\ICardReader.cs" />
     <Compile Include="Cards\Readers\LayoutSettings.cs" />
-    <Compile Include="Cards\Readers\SummaryLayoutReader.cs" />
+    <Compile Include="Cards\Readers\SummaryCardReader.cs" />
+    <Compile Include="Cards\Readers\TemplateBasedCardReader.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Cards\LayoutTemplates\Test.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cards\LayoutTemplates\Basic.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Cards\LayoutTemplates\Detailed.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

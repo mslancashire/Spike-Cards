@@ -52,7 +52,7 @@ namespace Test
             layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-Boxed-MultipleLines.txt", NumberOfCardsForTest = 9, LayoutSettings = layoutSettingsBoxed });
             layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-DoubleBoxed-FullLine.txt", NumberOfCardsForTest = 5, LayoutSettings = layoutSettingsDoubleBoxed });
             layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-DoubleBoxed-Missing.txt", NumberOfCardsForTest = 3, LayoutSettings = layoutSettingsDoubleBoxed });
-            layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-DoubleBoxed-MultipleLines.txt", NumberOfCardsForTest = 7, LayoutSettings = layoutSettingsDoubleBoxed });
+            layoutTests.Add(new LayoutTest { FileForComparison = "TestCardLayout-DoubleBoxed-MultipleLines.txt", NumberOfCardsForTest = 12, LayoutSettings = layoutSettingsDoubleBoxed });
         }
 
         public static List<Card> GetInstanceOfTestCards

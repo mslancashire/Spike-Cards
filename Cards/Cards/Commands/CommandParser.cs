@@ -130,7 +130,7 @@ namespace Cards.Commands
         public Boolean RunCommand(String commandName, List<String> arguments)
         {
             Boolean continueRunning = true;
-            ICardsDisplay cardLayout = null;
+            ICardReader cardLayout = null;
 
             this.numberOfCommandsRan++;
 
@@ -151,7 +151,7 @@ namespace Cards.Commands
                     break;
                 case "displayhand":
                     Deck deck = Deck.GenerateRandomDeck(CardCollection.GenerateBasicCollection(), 5);
-                    cardLayout = new CardLayoutReader(deck.Cards, LayoutSettings.GetDoubleBoxedLayout());
+                    cardLayout = new CardReader(deck.Cards, LayoutSettings.GetDoubleBoxedLayout());
                     AddToOutput(cardLayout.DisplayCards());
                     break;
                 case "displaycollection":
@@ -169,7 +169,7 @@ namespace Cards.Commands
                         cards = cardCollection.Cards.FindAll(costFilter);
                     }
 
-                    cardLayout = new CardLayoutReader(cards, LayoutSettings.GetDoubleBoxedLayout());
+                    cardLayout = new CardReader(cards, LayoutSettings.GetDoubleBoxedLayout());
                     AddToOutput(cardLayout.DisplayCards());
                     break;
                 default:

@@ -13,6 +13,18 @@ namespace Test
     public class CheckCardLayouts
     {
         [TestMethod]
+        public void TestTemplateCardReader()
+        {
+            List<Card> listOfCards = MockFactory.GetInstanceOfTestCards;
+            String testTemplate = "Test Template";
+
+            TemplateBasedCardReader templateCardReader = new TemplateBasedCardReader(listOfCards, "Test.txt");
+            Assert.IsNotNull(templateCardReader.CardTemplate);
+            Assert.AreEqual(testTemplate, templateCardReader.CardTemplate);
+        }
+
+
+        [TestMethod]
         public void TestCardLayouts()
         {
             List<Card> listOfTestCards = MockFactory.GetInstanceOfTestCards;
@@ -21,7 +33,7 @@ namespace Test
             foreach (LayoutTest layoutTest in layoutTests)
             {                
                 List<Card> testCards = new List<Card>(listOfTestCards.GetRange(0, layoutTest.NumberOfCardsForTest));
-                ICardsDisplay cardDisplay = new CardLayoutReader(testCards, layoutTest.LayoutSettings);
+                ICardReader cardDisplay = new CardReader(testCards, layoutTest.LayoutSettings);
 
                 var filePath = Path.Combine(Environment.CurrentDirectory, "CardLayouts", layoutTest.FileForComparison);
 
