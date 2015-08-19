@@ -7,7 +7,7 @@ namespace Test
     [TestClass]
     public class CheckCardCollection
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Card Collection")]
         public void TestBaiscCardCollection()
         {
             var baiscCardCollection = CardCollection.GenerateBasicCollection();

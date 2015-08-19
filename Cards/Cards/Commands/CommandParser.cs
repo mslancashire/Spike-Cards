@@ -131,6 +131,7 @@ namespace Cards.Commands
         {
             Boolean continueRunning = true;
             ICardReader cardLayout = null;
+            LayoutSettings currentLayoutSettings = LayoutSettings.GetDoubleBoxedLayout();
 
             this.numberOfCommandsRan++;
 
@@ -151,7 +152,7 @@ namespace Cards.Commands
                     break;
                 case "displayhand":
                     Deck deck = Deck.GenerateRandomDeck(CardCollection.GenerateBasicCollection(), 5);
-                    cardLayout = new CardReader(deck.Cards, LayoutSettings.GetDoubleBoxedLayout());
+                    cardLayout = new TemplateBasedCardReader(deck.Cards, currentLayoutSettings, "Detailed.txt");
                     AddToOutput(cardLayout.DisplayCards());
                     break;
                 case "displaycollection":
@@ -169,7 +170,7 @@ namespace Cards.Commands
                         cards = cardCollection.Cards.FindAll(costFilter);
                     }
 
-                    cardLayout = new CardReader(cards, LayoutSettings.GetDoubleBoxedLayout());
+                    cardLayout = new TemplateBasedCardReader(cards, currentLayoutSettings, "Detailed.txt");
                     AddToOutput(cardLayout.DisplayCards());
                     break;
                 default:

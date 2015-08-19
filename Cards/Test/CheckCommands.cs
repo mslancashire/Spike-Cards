@@ -21,7 +21,7 @@ namespace Test
             normalCommadParser = new CommandParser();
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Command")]
         public void TestIsValidCommand()
         {
             Assert.IsTrue(testCommandParser.IsValidCommand("Test1"), "Ensure a test command is valid.");
@@ -29,7 +29,7 @@ namespace Test
             Assert.IsFalse(testCommandParser.IsValidCommand("CommandNotHere"), "Ensure the command is not valid");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Command")]
         public void TestParseOfSingleCommand()
         {
             String commandLine = String.Empty;
@@ -43,7 +43,7 @@ namespace Test
             Assert.IsTrue(commandArguments.Count == 0, "Ensure argument list contains no arguments");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Command")]
         public void TestParseOfSingleCommandWithOneArgument()
         {
             String commandLine = String.Empty;
@@ -57,7 +57,7 @@ namespace Test
             Assert.IsTrue(commandArguments.Count == 1, "Ensure argument list contains one argument.");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Command")]
         public void TestParseOfSingleCommandWithMultpleArguments()
         {
             String commandLine = String.Empty;
@@ -74,7 +74,7 @@ namespace Test
             Assert.AreEqual("TestArg3", commandArguments[2], "Ensure argument 3 is correct.");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Command")]
         public void TestDisplayHandCommand()
         {
             // cards in hand are randomised so we can only count the lines and ensure the number of lines are correct.
@@ -98,7 +98,7 @@ namespace Test
                 lineNumber++;
             }
 
-            Assert.AreEqual(11, lineNumber, "Ensure we output the correct number of lines.");
+            Assert.AreEqual(14, lineNumber, "Ensure we output the correct number of lines.");
         }       
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Cards\Readers\LayoutSettings.cs" />
     <Compile Include="Cards\Readers\SummaryCardReader.cs" />
     <Compile Include="Cards\Readers\TemplateBasedCardReader.cs" />
+    <Compile Include="Cards\Readers\TemplatePlaceholders.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

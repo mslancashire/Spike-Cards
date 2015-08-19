@@ -7,7 +7,7 @@ namespace Test
     [TestClass]
     public class CheckCards
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Card")]
         public void TestBlankCard()
         {
             var blankCard = new BlankCard();
@@ -20,7 +20,7 @@ namespace Test
             Assert.AreEqual("C:0|H:0|A:0, Name:Blank, This card does nothing.", blankCard.Summary, "Check blank card summary is correct.");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Card")]
         public void TestBasicCard()
         {
             var name = "Basic";

@@ -13,7 +13,8 @@ namespace Test.CardLayouts
         { }
 
         public String FileForComparison;
-        public Int32 NumberOfCardsForTest;
-        public LayoutSettings LayoutSettings;
+        //public Int32 NumberOfCardsForTest;
+        //public LayoutSettings LayoutSettings;
+        public ICardReader CardReader;
     }
 }

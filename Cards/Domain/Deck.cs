@@ -25,8 +25,9 @@ namespace Domain
 
             while (deck.Cards.Count < deckSize && cardCollection.Cards.Count > 0)
             {
-                var rnd = new Random();
-                var index = rnd.Next(deckSource.Cards.Count - 1);
+                var totalCardIndex = deckSource.Cards.Count - 1;
+                var rnd = new Random(totalCardIndex);
+                var index = rnd.Next(totalCardIndex);
                 deck.Cards.Add(deckSource.Cards[index]);
                 deckSource.Cards.RemoveAt(index);
             }

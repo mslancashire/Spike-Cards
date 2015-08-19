@@ -43,7 +43,7 @@ namespace Domain.Cards.Readers
 
             return nextCount;
         }
-
+                
         internal String ReadCards()
         {
             var cardOuputBuilder = new StringBuilder();            

@@ -10,7 +10,7 @@ namespace Test
     [TestClass]
     public class CheckLayoutSettings
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Layout Settings")]
         public void TestDefaultLayoutSettings()
         {
             LayoutSettings layoutSettings = new LayoutSettings();
@@ -20,7 +20,7 @@ namespace Test
             Assert.AreEqual(14, layoutSettings.NumberOfCharactersInternalToCard, "Number of characters availible inside the card should be 14.");
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("Layout Settings")]
         public void TestCustomLayouttSettings()
         {
             var charsPerLine = 500;

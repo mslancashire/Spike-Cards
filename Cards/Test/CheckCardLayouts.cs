@@ -12,28 +12,64 @@ namespace Test
     [TestClass]
     public class CheckCardLayouts
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Card Layout")]
+        public void TestReadCard()
+        {
+            List<Card> listOfCards = MockFactory.GetInstanceOfTestCards;
+            LayoutSettings testLayoutSetting = LayoutSettings.GetDoubleBoxedLayout();
+            TemplateBasedCardReader templateCardReader = new TemplateBasedCardReader(listOfCards.GetRange(0, 1), testLayoutSetting, "Detailed.txt");
+
+            String testFilePath = Path.Combine(Environment.CurrentDirectory, "CardLayouts", "TestCardLayout-Template-ReadCard.txt");
+            String testCardOuput = File.ReadAllText(testFilePath);
+
+            String cardFullOuput = templateCardReader.ReadCard(listOfCards[0]);
+            
+            Assert.AreEqual(testCardOuput, cardFullOuput);
+        }
+
+        [TestMethod, TestCategory("Card Layout")]
+        public void TestCreateCardMiddle()
+        {
+            List<Card> listOfCards = MockFactory.GetInstanceOfTestCards;
+            LayoutSettings testLayoutSetting = LayoutSettings.GetDoubleBoxedLayout();
+            TemplateBasedCardReader templateCardReader = new TemplateBasedCardReader(listOfCards.GetRange(0, 1), testLayoutSetting, "Detailed.txt");
+            String filler = new String(' ', testLayoutSetting.NumberOfCharactersInternalToCard);
+
+            String testCardMiddle = "";
+            testCardMiddle += testLayoutSetting.CardBorderLeft + "This is the fi" + testLayoutSetting.CardBorderRight + Environment.NewLine;
+            testCardMiddle += testLayoutSetting.CardBorderLeft + "rst test card." + testLayoutSetting.CardBorderRight + Environment.NewLine;
+            testCardMiddle += testLayoutSetting.CardBorderLeft + filler + testLayoutSetting.CardBorderRight + Environment.NewLine;
+            testCardMiddle += testLayoutSetting.CardBorderLeft + filler + testLayoutSetting.CardBorderRight + Environment.NewLine;
+            testCardMiddle += testLayoutSetting.CardBorderLeft + filler + testLayoutSetting.CardBorderRight + Environment.NewLine;
+            testCardMiddle += testLayoutSetting.CardBorderLeft + filler + testLayoutSetting.CardBorderRight;  // don't add end line feed this is done by template
+
+            String cardMiddleOutput = templateCardReader.CreateCardMiddle(listOfCards[0]);
+
+            Assert.AreEqual(testCardMiddle, cardMiddleOutput);
+        }
+
+        [TestMethod, TestCategory("Template Load")]
         public void TestTemplateCardReader()
         {
             List<Card> listOfCards = MockFactory.GetInstanceOfTestCards;
             String testTemplate = "Test Template";
 
-            TemplateBasedCardReader templateCardReader = new TemplateBasedCardReader(listOfCards, "Test.txt");
+            TemplateBasedCardReader templateCardReader = new TemplateBasedCardReader(listOfCards, LayoutSettings.GetDoubleBoxedLayout(), "Test.txt");
             Assert.IsNotNull(templateCardReader.CardTemplate);
             Assert.AreEqual(testTemplate, templateCardReader.CardTemplate);
         }
 
 
-        [TestMethod]
+        [TestMethod, TestCategory("Card Layout")]
         public void TestCardLayouts()
         {
             List<Card> listOfTestCards = MockFactory.GetInstanceOfTestCards;
             List<LayoutTest> layoutTests = MockFactory.GetInstanceOfTestLayouts;
 
             foreach (LayoutTest layoutTest in layoutTests)
-            {                
-                List<Card> testCards = new List<Card>(listOfTestCards.GetRange(0, layoutTest.NumberOfCardsForTest));
-                ICardReader cardDisplay = new CardReader(testCards, layoutTest.LayoutSettings);
+            {
+                //List<Card> testCards = new List<Card>(listOfTestCards.GetRange(0, layoutTest.NumberOfCardsForTest));
+                ICardReader cardDisplay = layoutTest.CardReader;
 
                 var filePath = Path.Combine(Environment.CurrentDirectory, "CardLayouts", layoutTest.FileForComparison);
 

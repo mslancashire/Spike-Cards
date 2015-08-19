@@ -14,6 +14,8 @@ namespace Cards
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.GetEncoding(437);
+
             // check if buffer size is min size for display
             if (Console.BufferWidth < 80)
             {

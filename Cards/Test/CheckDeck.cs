@@ -7,7 +7,7 @@ namespace Test
     [TestClass]
     public class CheckDeck
     {
-        [TestMethod]
+        [TestMethod, TestCategory("Card")]
         public void TestBasicDesk()
         {
             var deckSize = 5;
