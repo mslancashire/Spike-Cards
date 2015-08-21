@@ -16,6 +16,7 @@ namespace Domain
         {
             var deck = new Deck();
             var deckSource = cardCollection;
+            var rnd = new Random();
             //var deckSource = new CardCollection(cardCollection.Cards); // create new list so we don't mess with the actual card collection
 
             if (deckSource.Cards.Count < deckSize)
@@ -26,7 +27,6 @@ namespace Domain
             while (deck.Cards.Count < deckSize && cardCollection.Cards.Count > 0)
             {
                 var totalCardIndex = deckSource.Cards.Count - 1;
-                var rnd = new Random(totalCardIndex);
                 var index = rnd.Next(totalCardIndex);
                 deck.Cards.Add(deckSource.Cards[index]);
                 deckSource.Cards.RemoveAt(index);

@@ -30,10 +30,17 @@ namespace Domain
         {
             var cardNames = GreekCardNames.Instance;
             var cardCollection = new CardCollection();
+            var rdNum = new Random();
 
             for (Int32 i = 0; i < cardNames.Count; i++)
             {
-                cardCollection.cards.Add(new BasicCard(cardNames[i].Name, i, cardNames[i].Description));
+                var card = new BasicCard(cardNames[i].Name, i, cardNames[i].Description);
+
+                card.Cost = rdNum.Next(0,10);
+                card.Attack = rdNum.Next(0,20);
+                card.Health = rdNum.Next(0,20);
+
+                cardCollection.cards.Add(card);
             }
             return cardCollection;
         }
