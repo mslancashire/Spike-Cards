@@ -24,18 +24,19 @@ namespace Test
         {
             // setup test cards
             listOfTestCards = new List<Card>();
-            listOfTestCards.Add(new BasicCard("Test 1", 1, "This is the first test card."));
-            listOfTestCards.Add(new BasicCard("Test 2 has a long name.", 2, "This is the secound test card and has a very long description."));
-            listOfTestCards.Add(new BasicCard("Test 3", 3, "This is the third test card and has an even longer description to make sure the full card middle layout is tested."));
-            listOfTestCards.Add(new BasicCard("Test 4", 4, ""));
-            listOfTestCards.Add(new BasicCard("Test 5", 5, ""));
-            listOfTestCards.Add(new BasicCard("Test 6", 6, ""));
+            listOfTestCards.Add(new BasicCard("Test 1", 1, 2, 1, "This is the first test card."));
+            listOfTestCards.Add(new BasicCard("Test 2 has a long name.", 2, 1, 2, "This is the secound test card and has a very long description."));
+            listOfTestCards.Add(new BasicCard("Test 3", 3, 2, 3, "This is the third test card and has an even longer description to make sure the full card middle layout is tested."));
+            listOfTestCards.Add(new BasicCard("Test 4", 4, 1, 4,  ""));
+            listOfTestCards.Add(new BasicCard("Test 5", 5, 4, 1, ""));
+            listOfTestCards.Add(new BasicCard("Test 6", 6, 4, 5, ""));
             listOfTestCards.Add(new BasicCard("Test 7", 7, ""));
             listOfTestCards.Add(new BasicCard("Test 8", 8, ""));
             listOfTestCards.Add(new BasicCard("Test 9", 9, ""));
             listOfTestCards.Add(new BasicCard("Test 10", 10, ""));
             listOfTestCards.Add(new BasicCard("Test 11", 11, ""));
             listOfTestCards.Add(new BasicCard("Test 12", 12, ""));
+            listOfTestCards.Add(new BasicCard("Test 13", 12, ""));
 
             // setup layouts
             var layoutSettingsDefault = LayoutSettings.GetDefaultLayout();
