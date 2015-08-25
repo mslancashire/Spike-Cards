@@ -12,6 +12,8 @@ namespace Domain
         public static IEnumerable<Card> FilterCardsByCost(List<Card> cards, Int32 cost)
         {
             return cards.Where(c => c.Cost == cost);
+
+            //return from card in cards where card.Cost == cost select card;
         }
 
         public static IEnumerable<Card> FilterCardsByAttack(List<Card> cards, Int32 attack)

@@ -23,42 +23,66 @@ namespace Test
         public void TestCardFilterByCost()
         {
             var testCards = MockFactory.GetInstanceOfTestCards;
-            var filteredCards = new List<Card>(CardsUtility.FilterCardsByCost(testCards, 4));
-            Assert.IsTrue(filteredCards.Count == 1, String.Format("When filtering by a cost of {0} we found {1}, when should have found {2}.", 4, filteredCards.Count, 1));
+            FilterCheck[] checks = new FilterCheck[]
+                                        {
+                                            new FilterCheck { filterBy = 1, countShouldBe = 1, filterType = "cost" },
+                                            new FilterCheck { filterBy = 99, countShouldBe = 0, filterType = "cost"},
+                                            new FilterCheck { filterBy = 12, countShouldBe = 2, filterType = "cost"}
+                                        };
 
-            filteredCards = new List<Card>(CardsUtility.FilterCardsByCost(testCards, 99));
-            Assert.IsTrue(filteredCards.Count == 0, String.Format("When filtering by a cost of {0} we found {1}, when should have found {2}.", 99, filteredCards.Count, 0));
-
-            filteredCards = new List<Card>(CardsUtility.FilterCardsByCost(testCards, 12));
-            Assert.IsTrue(filteredCards.Count == 2, String.Format("When filtering by a cost of {0} we found {1}, when should have found {2}.", 12, filteredCards.Count, 2));
+            foreach (FilterCheck filterTest in checks)
+            {
+                var filteredCards = new List<Card>(CardsUtility.FilterCardsByCost(testCards, filterTest.filterBy));
+                Assert.AreEqual(filterTest.countShouldBe, filteredCards.Count, filterTest.AssertMessage(filteredCards.Count));
+            }
         }
 
         [TestMethod, TestCategory("Card Searching")]
         public void TestCardFilterByHealth()
         {
             var testCards = MockFactory.GetInstanceOfTestCards;
-            var filteredCards = new List<Card>(CardsUtility.FilterCardsByHealth(testCards, 4));
-            Assert.IsTrue(filteredCards.Count == 2, String.Format("When filtering by a health of {0} we found {1}, when should have found {2}.", 4, filteredCards.Count, 2));
+            FilterCheck[] checks = new FilterCheck[]
+                                       {
+                                            new FilterCheck { filterBy = 4, countShouldBe = 2, filterType = "health" },
+                                            new FilterCheck { filterBy = 99, countShouldBe = 0, filterType = "health"},
+                                            new FilterCheck { filterBy = 2, countShouldBe = 2, filterType = "health"}
+                                       };
 
-            filteredCards = new List<Card>(CardsUtility.FilterCardsByHealth(testCards, 99));
-            Assert.IsTrue(filteredCards.Count == 0, String.Format("When filtering by a health of {0} we found {1}, when should have found {2}.", 99, filteredCards.Count, 0));
-
-            filteredCards = new List<Card>(CardsUtility.FilterCardsByHealth(testCards, 2));
-            Assert.IsTrue(filteredCards.Count == 2, String.Format("When filtering by a health of {0} we found {1}, when should have found {2}.", 2, filteredCards.Count, 2));
+            foreach (FilterCheck filterTest in checks)
+            {
+                var filteredCards = new List<Card>(CardsUtility.FilterCardsByHealth(testCards, filterTest.filterBy));
+                Assert.AreEqual(filterTest.countShouldBe, filteredCards.Count, filterTest.AssertMessage(filteredCards.Count));
+            }
         }
 
         [TestMethod, TestCategory("Card Searching")]
-        public void TestCardFilterByAttach()
+        public void TestCardFilterByAttack()
         {
             var testCards = MockFactory.GetInstanceOfTestCards;
-            var filteredCards = new List<Card>(CardsUtility.FilterCardsByAttack(testCards, 1));
-            Assert.IsTrue(filteredCards.Count == 2, String.Format("When filtering by a attack of {0} we found {1}, when should have found {2}.", 1, filteredCards.Count, 2));
+            FilterCheck[] checks = new FilterCheck[]
+                                       {
+                                            new FilterCheck { filterBy = 1, countShouldBe = 2, filterType = "attack" },
+                                            new FilterCheck { filterBy = 99, countShouldBe = 0, filterType = "attack"},
+                                            new FilterCheck { filterBy = 5, countShouldBe = 1, filterType = "attack"}
+                                       };
 
-            filteredCards = new List<Card>(CardsUtility.FilterCardsByAttack(testCards, 99));
-            Assert.IsTrue(filteredCards.Count == 0, String.Format("When filtering by a attack of {0} we found {1}, when should have found {2}.", 99, filteredCards.Count, 0));
+            foreach (FilterCheck filterTest in checks)
+            {
+                var filteredCards = new List<Card>(CardsUtility.FilterCardsByAttack(testCards, filterTest.filterBy));
+                Assert.AreEqual(filterTest.countShouldBe, filteredCards.Count, filterTest.AssertMessage(filteredCards.Count));
+            }
+        }
 
-            filteredCards = new List<Card>(CardsUtility.FilterCardsByAttack(testCards, 5));
-            Assert.IsTrue(filteredCards.Count == 1, String.Format("When filtering by a attack of {0} we found {1}, when should have found {2}.", 5, filteredCards.Count, 1));
+        struct FilterCheck
+        {
+            internal Int32 filterBy;
+            internal Int32 countShouldBe;
+            internal String filterType;
+
+            internal String AssertMessage(Int32 actualCount)
+            {
+                return String.Format("When filtering by {0} with a value of {1}, we found {2} cards but should have found {3}.", filterType, filterBy, actualCount, countShouldBe);
+            }
         }
     }
 }
