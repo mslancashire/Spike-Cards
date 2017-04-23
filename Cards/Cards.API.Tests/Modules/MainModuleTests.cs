@@ -9,7 +9,7 @@ namespace Cards.API.Tests.Modules
         [Fact(DisplayName = "VersionTest")]
         public void VersionTest()
         {
-            var response = browser.Get("/", with =>
+            var response = Browser.Get("/", with =>
             {
                 with.HttpRequest();
             });

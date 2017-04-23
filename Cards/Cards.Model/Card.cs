@@ -56,7 +56,7 @@ namespace Cards.Model
         public Int32 Cost
         {
             get { return this.cost; }
-            internal set { this.cost = value; }
+            set { this.cost = value; }
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace Cards.Model
         public String Description
         {
             get { return this.description; }
-            internal set { this.description = value; }
+            set { this.description = value; }
         }
 
         /// <summary>

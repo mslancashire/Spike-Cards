@@ -1,6 +1,6 @@
-namespace Cards.API.BusinessLogic.Services.Interfaces
+namespace Cards.API.BusinessLogic.Settings
 {
-    public interface IAppSettings
+    public interface IApplicationSettings
     {
         string Value1 { get; set; }
 

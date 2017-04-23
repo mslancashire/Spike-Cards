@@ -7,18 +7,18 @@ namespace Cards.API.Modules
 {
     public class MainModule : NancyModule
     {
-        private readonly IVersionService versionService;
+        private readonly IVersionService _versionService;
 
-        public MainModule(IVersionService versionServiceSvc)
+        public MainModule(IVersionService versionService)
         {
-            versionService = versionServiceSvc;
+            _versionService = versionService;
 
             Get("/", args =>
             {
                 var model = new
                 {
-                    app = versionService.GetApplicationName(),
-                    version = versionService.GetApplicationVersion(),
+                    app = _versionService.GetApplicationName(),
+                    version = _versionService.GetApplicationVersion(),
                     time = DateTime.Now
                 };
             
