@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Cards.Model;
+using System;
+using System.Collections.Generic;
 
 namespace Cards.Data
 {
     public interface ICardsRepository
     {
-        IList<Card> CardCollection {get; set;}
+        IEnumerable<Card> GetCardCollection();
     }
 }

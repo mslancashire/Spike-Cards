@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace Cards.Data.Source.GreekCardNames
 {
     public sealed class GreekCardNames : List<CardName>

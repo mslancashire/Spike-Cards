@@ -11,6 +11,12 @@
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "run",
+            "args": [
+                "--project ${workspaceRoot}\\Cards\\Cards.API\\Cards.API.csproj"
+            ]                        
         }
     ]
 }

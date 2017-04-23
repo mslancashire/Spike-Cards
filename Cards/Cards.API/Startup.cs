@@ -1,9 +1,9 @@
+using Cards.API.BusinessLogic.Settings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Nancy.Owin;
-using Cards.API.Services;
 
 namespace Cards.API
 {
@@ -27,7 +27,7 @@ namespace Cards.API
                 .AddConsole(config.GetSection("Logging"))
                 .AddDebug();
 
-            var appSettings = new AppSettings();
+            var appSettings = new ApplicationSettings();
             ConfigurationBinder.Bind(config, appSettings);
 
             app.UseOwin(x => x.UseNancy(opt => opt.Bootstrapper = new Bootstrapper(appSettings, app.ApplicationServices)));

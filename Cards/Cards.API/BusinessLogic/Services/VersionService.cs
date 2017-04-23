@@ -1,15 +1,16 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.PlatformAbstractions;
 using Cards.API.BusinessLogic.Services.Interfaces;
+using Cards.API.BusinessLogic.Settings;
 
 namespace Cards.API.BusinessLogic.Services
 {
     public class VersionService : IVersionService
     {
-        private readonly IAppSettings appSettings;
+        private readonly IApplicationSettings appSettings;
         private readonly ILogger<VersionService> logger;
 
-        public VersionService(IAppSettings appSet, ILoggerFactory loggerFactory)
+        public VersionService(IApplicationSettings appSet, ILoggerFactory loggerFactory)
         {
             appSettings = appSet;
             logger = loggerFactory.CreateLogger<VersionService>();
