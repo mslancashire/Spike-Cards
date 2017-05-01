@@ -7,6 +7,6 @@ namespace Cards.Data
 {
     public interface ICardsContext
     {
-        IEnumerable<Card> CardCollection { get; set; }
+        IEnumerable<BasicCard> CardCollection { get; set; }
     }
 }

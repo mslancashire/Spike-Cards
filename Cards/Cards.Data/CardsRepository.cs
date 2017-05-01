@@ -15,9 +15,34 @@ namespace Cards.Data
             _cardsContext = cardsContext;
         }
 
-        public IEnumerable<Card> GetCardCollection()
+        public IEnumerable<BasicCard> GetCardCollection()
         {
             return _cardsContext.CardCollection;
+        }
+
+        public IEnumerable<BasicCard> FindCardsByName(string nameToFind)
+        {
+            return _cardsContext.CardCollection.Where(c => c.Name == nameToFind);
+        }
+
+        public IEnumerable<BasicCard> FindCardsByCost(int costToFind)
+        {
+            return _cardsContext.CardCollection.Where(c => c.Cost == costToFind);
+        }
+
+        public IEnumerable<BasicCard> FindCardsByHealth(int healthToFind)
+        {
+            return _cardsContext.CardCollection.Where(c => c.Health == healthToFind);
+        }
+
+        public IEnumerable<BasicCard> FindCardsByAttack(int attackToFind)
+        {
+            return _cardsContext.CardCollection.Where(c => c.Attack == attackToFind);
+        }
+
+        public IEnumerable<BasicCard> FindCardsByDescription(string descriptionToFind)
+        {
+            return _cardsContext.CardCollection.Where(c => c.Description.Contains(descriptionToFind));
         }
     }
 }

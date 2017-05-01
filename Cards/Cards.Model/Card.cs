@@ -7,33 +7,8 @@ namespace Cards.Model
     /// </summary>
     public abstract class Card
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name">The name of the playing card.</param>
-        /// <param name="cost">The cost of putting the card into play.</param>
-        /// <param name="health">The health of the card.</param>
-        /// <param name="attack">This attach of the card.</param>
-        /// <param name="description">The description of the card.</param>
-        protected Card(String name, Int32 cost, Int32 health, Int32 attack, String description)
-            : this(name, cost, description)
-        {
-            this.health = health;
-            this.attack = attack;
-        }
-
-        /// <summary>
-        /// Base Card
-        /// </summary>
-        /// <param name="name">The name of the playing card.</param>
-        /// <param name="cost">The cost of putting the card into play.</param>
-        /// <param name="description">The description of the card.</param>
-        protected Card(String name, Int32 cost, String description)
-        {
-            this.name = name;
-            this.cost = cost;
-            this.description = description;
-        }
+        public Card()
+        { }
 
         private String name;
         private Int32 cost;
@@ -47,7 +22,7 @@ namespace Cards.Model
         public String Name
         {
             get { return this.name; }
-            internal set { this.name = value; }
+            set { this.name = value; }
         }
 
         /// <summary>

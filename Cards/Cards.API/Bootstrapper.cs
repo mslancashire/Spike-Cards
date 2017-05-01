@@ -8,6 +8,9 @@ using System;
 using Cards.API.BusinessLogic.Settings;
 using Cards.Data;
 using Nancy.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Newtonsoft.Json.Converters;
 
 namespace Cards.API
 {
@@ -30,7 +33,7 @@ namespace Cards.API
         {
             base.Configure(environment);
 
-            environment.Tracing(true, true);            
+            environment.Tracing(true, true);
         }
 
         protected override void ConfigureApplicationContainer(TinyIoCContainer container)
@@ -39,10 +42,20 @@ namespace Cards.API
 
             container.Register(_applicationSettings);
             container.Register(_serviceProvider.GetService<ILoggerFactory>());
+            //container.Register<JsonSerializer, CustomJsonSerializer>().AsSingleton();
 
             container.Register<IVersionService, VersionService>();
             container.Register<ICardsRepository, CardsRepository>();
             container.Register<ICardsContext, GreekCardsContext>();
+        }
+    }
+
+    public sealed class CustomJsonSerializer : JsonSerializer
+    {
+        public CustomJsonSerializer()
+        {
+            Converters.Add(new StringEnumConverter());
+            ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }

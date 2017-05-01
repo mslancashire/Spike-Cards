@@ -25,7 +25,6 @@ namespace Cards.API.Modules
                 return View["Index", model];
             
             });
-            
         }
     }
 }

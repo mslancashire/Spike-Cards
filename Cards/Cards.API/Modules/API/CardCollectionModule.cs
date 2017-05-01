@@ -1,8 +1,5 @@
 ﻿using Cards.Data;
-using Cards.Model;
 using Nancy;
-using Nancy.Responses;
-using System.Collections.Generic;
 
 namespace Cards.API.Modules.API
 {
@@ -11,11 +8,10 @@ namespace Cards.API.Modules.API
         public CardCollectionModule(ICardsRepository cardRepository)
             : base("/api/cards")
         {
-
-            Get("", p =>
+            Get("/", p =>
             {
                 return cardRepository.GetCardCollection();
-            });
+            });            
         }
     }
 }
