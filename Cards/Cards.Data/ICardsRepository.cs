@@ -6,16 +6,16 @@ namespace Cards.Data
 {
     public interface ICardsRepository
     {
-        IEnumerable<Card> GetCardCollection();
+        IEnumerable<BasicCard> GetCardCollection();
 
-        IEnumerable<Card> FindCardsByName(string nameToFind);
+        IEnumerable<BasicCard> FindCardsByName(string nameToFind);
 
-        IEnumerable<Card> FindCardsByCost(int costToFind);
+        IEnumerable<BasicCard> FindCardsByCost(int costToFind);
 
-        IEnumerable<Card> FindCardsByHealth(int healthToFind);
+        IEnumerable<BasicCard> FindCardsByHealth(int healthToFind);
 
-        IEnumerable<Card> FindCardsByAttack(int attackToFind);
+        IEnumerable<BasicCard> FindCardsByAttack(int attackToFind);
 
-        IEnumerable<Card> FindCardsByDescription(string descriptionToFind);
+        IEnumerable<BasicCard> FindCardsByDescription(string descriptionToFind);
     }
 }

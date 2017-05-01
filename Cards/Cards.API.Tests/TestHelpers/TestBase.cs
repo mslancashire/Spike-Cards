@@ -26,8 +26,9 @@ namespace Cards.API.Tests.TestHelpers
 
             var appSettings = new ApplicationSettings();
             ConfigurationBinder.Bind(_config, appSettings);
-
-            _bootstrapper = new Bootstrapper(appSettings, new MockServiceProvider());
+            
+            _bootstrapper = new Bootstrapper(appSettings, new MockServiceProvider());            
+            
             _browser = new Browser(_bootstrapper);
         }
 

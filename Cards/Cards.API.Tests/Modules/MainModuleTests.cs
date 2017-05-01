@@ -12,7 +12,7 @@ namespace Cards.API.Tests.Modules
             var response = Browser.Get("/", with =>
             {
                 with.HttpRequest();
-            });
+            });            
 
             var info = response.Result.Body.AsString();
 

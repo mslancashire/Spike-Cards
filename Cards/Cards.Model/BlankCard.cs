@@ -2,8 +2,11 @@
 {
     public class BlankCard : Card
     {
-        public BlankCard() : base("Blank", 0, "This card does nothing.")
+        public BlankCard()
         {
+            Name = "Blank";
+            Cost = 0;
+            Description = "This card does nothing.";
         }
     }
 }
