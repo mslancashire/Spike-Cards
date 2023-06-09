@@ -1,19 +1,19 @@
 # Spike-Cards
-This is a spike project that contains an application to learn new technology, processes, carry out experiments and just mess about with.  Its based on a popular card card.
+This is a spike project that contains an application to learn new technology, processes, carry out experiments and just mess about with.  Its based on a popular card game.....
 
-Kanban style task list is in Trello.
+Kan-ban style task list is in Trello.
 
-# H1
-Hey goes this read me preview have markup? Yep it does +1 for GIT already.
+# Current Status
+Its all a bit broken....
+Last Stable Release: last-working tagged v0.0.0.1
+Current WIP: feature/001
 
-Currently working on:
-* Getting current work in GIT
-* Learning GIT
-* Unit Tests, not done test driven development yet.
-* New Commands in console app, need to refactor this so that Unit Tests can be easily added and later either an attempt at a Mobile App and or MVC web app.
-* Thinking of building a Web API layer for the game logic interface so that it can be shared across platform.
-* Increased card formatting.
-* Refactoring rubish card formatting process.
+## Currently Working On
+* Solution restructure
+* Dotnet core
+* API interface using NancyFX
+* Re-adding the unit tests
+* Re-adding the console application
 
 
 
