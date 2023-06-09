@@ -1,52 +1,51 @@
-using Cards.Data.Source.GreekCardNames;
+using Cards.Data.Source;
 using Cards.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Cards.Data
+namespace Cards.Data;
+
+public class GreekCardsContext : ICardsContext
 {
-    public class GreekCardsContext : ICardsContext
+    private IList<BasicCard> _cardCollection;
+
+    public GreekCardsContext()
     {
-        private IList<BasicCard> _cardCollection;
+        _cardCollection = new List<BasicCard>();
 
-        public GreekCardsContext()
+        var cardNames = GreekCardNames.Instance;
+        var rdNum = new Random();
+
+        for (Int32 i = 0; i < cardNames.Count; i++)
         {
-            _cardCollection = new List<BasicCard>();
-
-            var cardNames = GreekCardNames.Instance;
-            var rdNum = new Random();
-
-            for (Int32 i = 0; i < cardNames.Count; i++)
+            var card = new BasicCard
             {
-                var card = new BasicCard
-                {
-                    Name = cardNames[i].Name,
-                    Description = cardNames[i].Description,
-                    Cost = rdNum.Next(0, 10),
-                    Attack = rdNum.Next(0, 20),
-                    Health = rdNum.Next(0, 20)
-                };               
+                Name = cardNames[i].Name,
+                Description = cardNames[i].Description,
+                Cost = rdNum.Next(0, 10),
+                Attack = rdNum.Next(0, 20),
+                Health = rdNum.Next(0, 20)
+            };               
 
-                _cardCollection.Add(card);
-            }
-
-            // added to make test always work, due to random generation of card attributes
-            _cardCollection[0].Cost = 1;
-            _cardCollection[1].Health = 2;
-            _cardCollection[2].Attack = 3;
+            _cardCollection.Add(card);
         }
 
-        public IEnumerable<BasicCard> CardCollection
+        // added to make test always work, due to random generation of card attributes
+        _cardCollection[0].Cost = 1;
+        _cardCollection[1].Health = 2;
+        _cardCollection[2].Attack = 3;
+    }
+
+    public IEnumerable<BasicCard> CardCollection
+    {
+        get
         {
-            get
-            {
-                return _cardCollection;
-            }
-            set
-            {
-                _cardCollection = value.ToList();
-            }
+            return _cardCollection;
+        }
+        set
+        {
+            _cardCollection = value.ToList();
         }
     }
 }

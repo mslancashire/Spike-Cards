@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cards.Model
-{
-    public class BasicCard : Card
-    {
-        public BasicCard()
-        {
+namespace Cards.Model;
 
-        }
+public class BasicCard : Card
+{
+    public BasicCard()
+    {
+
     }
 }

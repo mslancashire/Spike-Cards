@@ -1,12 +1,11 @@
-﻿namespace Cards.Model
+﻿namespace Cards.Model;
+
+public class BlankCard : Card
 {
-    public class BlankCard : Card
+    public BlankCard()
     {
-        public BlankCard()
-        {
-            Name = "Blank";
-            Cost = 0;
-            Description = "This card does nothing.";
-        }
+        Name = "Blank";
+        Cost = 0;
+        Description = "This card does nothing.";
     }
 }

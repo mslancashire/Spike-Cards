@@ -1,21 +1,19 @@
 ﻿using Cards.Model;
-using System;
 using System.Collections.Generic;
 
-namespace Cards.Data
+namespace Cards.Data;
+
+public interface ICardsRepository
 {
-    public interface ICardsRepository
-    {
-        IEnumerable<BasicCard> GetCardCollection();
+    IEnumerable<BasicCard> GetCardCollection();
 
-        IEnumerable<BasicCard> FindCardsByName(string nameToFind);
+    IEnumerable<BasicCard> FindCardsByName(string nameToFind);
 
-        IEnumerable<BasicCard> FindCardsByCost(int costToFind);
+    IEnumerable<BasicCard> FindCardsByCost(int costToFind);
 
-        IEnumerable<BasicCard> FindCardsByHealth(int healthToFind);
+    IEnumerable<BasicCard> FindCardsByHealth(int healthToFind);
 
-        IEnumerable<BasicCard> FindCardsByAttack(int attackToFind);
+    IEnumerable<BasicCard> FindCardsByAttack(int attackToFind);
 
-        IEnumerable<BasicCard> FindCardsByDescription(string descriptionToFind);
-    }
+    IEnumerable<BasicCard> FindCardsByDescription(string descriptionToFind);
 }
