@@ -37,9 +37,9 @@ namespace Cards.API.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(403)]
         [ProducesResponseType(500)]
-        public IEnumerable<BasicCard> GetCards()
+        public IActionResult GetCards()
         {
-            return _cardsRepository.GetCardCollection();
+            return Ok(_cardsRepository.GetCardCollection());
         }
     }
 }
