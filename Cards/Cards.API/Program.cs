@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
@@ -21,7 +21,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks()
     .AddCheck<CardsDataSourceHealthCheck>("CardsDataSource");
 
-// add data dependancies
+// add data dependencies
 builder.Services.AddScoped<ICardsRepository, CardsRepository>();
 builder.Services.AddScoped<ICardsContext, GreekCardsContext>();
 

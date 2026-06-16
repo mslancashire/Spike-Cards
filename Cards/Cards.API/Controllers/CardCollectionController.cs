@@ -6,7 +6,7 @@ namespace Cards.API.Controllers
 {    
     [Produces("application/json")]
     [Route("api/cards")]
-    [ApiController]    
+    [ApiController]
     public class CardCollectionController : ControllerBase
     {
         private readonly ILogger<CardCollectionController> _logger;

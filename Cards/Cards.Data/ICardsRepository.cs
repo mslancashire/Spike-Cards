@@ -1,19 +1,20 @@
 ﻿using Cards.Model;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Cards.Data;
 
 public interface ICardsRepository
 {
-    IEnumerable<BasicCard> GetCardCollection();
+    Task<IEnumerable<BasicCard>> GetCardCollection();
 
-    IEnumerable<BasicCard> FindCardsByName(string nameToFind);
+    Task<IEnumerable<BasicCard>> FindCardsByName(string nameToFind);
 
-    IEnumerable<BasicCard> FindCardsByCost(int costToFind);
+    Task<IEnumerable<BasicCard>> FindCardsByCost(int costToFind);
 
-    IEnumerable<BasicCard> FindCardsByHealth(int healthToFind);
+    Task<IEnumerable<BasicCard>> FindCardsByHealth(int healthToFind);
 
-    IEnumerable<BasicCard> FindCardsByAttack(int attackToFind);
+    Task<IEnumerable<BasicCard>> FindCardsByAttack(int attackToFind);
 
-    IEnumerable<BasicCard> FindCardsByDescription(string descriptionToFind);
+    Task<IEnumerable<BasicCard>> FindCardsByDescription(string descriptionToFind);
 }

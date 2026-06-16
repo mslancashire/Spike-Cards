@@ -2,7 +2,6 @@ using Cards.Data.Source;
 using Cards.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Cards.Data;
 
@@ -17,7 +16,7 @@ public class GreekCardsContext : ICardsContext
         var cardNames = GreekCardNames.Instance;
         var rdNum = new Random();
 
-        for (Int32 i = 0; i < cardNames.Count; i++)
+        for (var i = 0; i < cardNames.Count; i++)
         {
             var card = new BasicCard
             {
@@ -38,14 +37,5 @@ public class GreekCardsContext : ICardsContext
     }
 
     public IEnumerable<BasicCard> CardCollection
-    {
-        get
-        {
-            return _cardCollection;
-        }
-        set
-        {
-            _cardCollection = value.ToList();
-        }
-    }
+        => _cardCollection;
 }

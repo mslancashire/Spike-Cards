@@ -1,7 +1,6 @@
 ﻿using Cards.API.Controllers;
 using Cards.Data;
 using Cards.Model;
-using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;

@@ -23,14 +23,18 @@ namespace Cards.API.Health
         {
             try
             {
-                _cardsRepository.GetCardCollection();
-
-                return HealthCheckResult.Healthy();
+                var cards = await _cardsRepository.GetCardCollection();
+                if (cards.Any())
+                {
+                    return HealthCheckResult.Healthy();
+                }
             }
             catch (Exception exception)
             {
                 return HealthCheckResult.Unhealthy(exception: exception);
             }
+
+            return HealthCheckResult.Degraded("Data not returned from DB.");
         }
     }
 }

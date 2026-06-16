@@ -1,7 +1,6 @@
 ﻿using Cards.Model;
-using FluentAssertions;
 
-namespace Cards.API.Tests.Model;
+namespace Cards.Tests.Model;
 
 public class CardTests
 {
