@@ -1,6 +1,8 @@
 ﻿using Cards.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Cards.Data;
 
@@ -13,33 +15,21 @@ public class CardsRepository : ICardsRepository
         _cardsContext = cardsContext;
     }
 
-    public IEnumerable<BasicCard> GetCardCollection()
-    {
-        return _cardsContext.CardCollection;
-    }
+    public async Task<IEnumerable<BasicCard>> GetCardCollection()
+        => await Task.FromResult(_cardsContext.CardCollection);
 
-    public IEnumerable<BasicCard> FindCardsByName(string nameToFind)
-    {
-        return _cardsContext.CardCollection.Where(c => c.Name == nameToFind);
-    }
+    public async Task<IEnumerable<BasicCard>> FindCardsByName(string nameToFind)
+        => await Task.FromResult(_cardsContext.CardCollection.Where(c => c.Name.Equals(nameToFind, StringComparison.OrdinalIgnoreCase)));
 
-    public IEnumerable<BasicCard> FindCardsByCost(int costToFind)
-    {
-        return _cardsContext.CardCollection.Where(c => c.Cost == costToFind);
-    }
+    public async Task<IEnumerable<BasicCard>> FindCardsByCost(int costToFind)
+        => await Task.FromResult(_cardsContext.CardCollection.Where(c => c.Cost == costToFind));
 
-    public IEnumerable<BasicCard> FindCardsByHealth(int healthToFind)
-    {
-        return _cardsContext.CardCollection.Where(c => c.Health == healthToFind);
-    }
+    public async Task<IEnumerable<BasicCard>> FindCardsByHealth(int healthToFind)
+        => await Task.FromResult(_cardsContext.CardCollection.Where(c => c.Health == healthToFind));
 
-    public IEnumerable<BasicCard> FindCardsByAttack(int attackToFind)
-    {
-        return _cardsContext.CardCollection.Where(c => c.Attack == attackToFind);
-    }
+    public async Task<IEnumerable<BasicCard>> FindCardsByAttack(int attackToFind)
+        => await Task.FromResult(_cardsContext.CardCollection.Where(c => c.Attack == attackToFind));
 
-    public IEnumerable<BasicCard> FindCardsByDescription(string descriptionToFind)
-    {
-        return _cardsContext.CardCollection.Where(c => c.Description.Contains(descriptionToFind));
-    }
+    public async Task<IEnumerable<BasicCard>> FindCardsByDescription(string descriptionToFind)
+        => await Task.FromResult(_cardsContext.CardCollection.Where(c => c.Description.Contains(descriptionToFind, StringComparison.OrdinalIgnoreCase)));
 }

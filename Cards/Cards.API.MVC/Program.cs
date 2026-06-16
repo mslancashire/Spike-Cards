@@ -1,20 +1,27 @@
-using Cards.API.Health;
+using Cards.API.MVC.Health;
 using Cards.Data;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHealthChecks()
     .AddCheck<CardsDataSourceHealthCheck>("CardsDataSource");
 
-// add data dependancies
+// add data dependencies
 builder.Services.AddScoped<ICardsRepository, CardsRepository>();
 builder.Services.AddScoped<ICardsContext, GreekCardsContext>();
 

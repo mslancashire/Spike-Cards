@@ -5,5 +5,5 @@ namespace Cards.Data;
 
 public interface ICardsContext
 {
-    IEnumerable<BasicCard> CardCollection { get; set; }
+    IEnumerable<BasicCard> CardCollection { get; }
 }
