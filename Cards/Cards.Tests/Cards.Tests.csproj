@@ -17,7 +17,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Cards.API\Cards.API.csproj" />
+		<ProjectReference Include="..\Cards.API.MVC\Cards.API.MVC.csproj" />
 		<ProjectReference Include="..\Cards.Model\Cards.Model.csproj" />
 	</ItemGroup>
 

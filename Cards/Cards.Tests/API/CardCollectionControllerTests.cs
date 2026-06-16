@@ -1,4 +1,4 @@
-﻿using Cards.API.Controllers;
+﻿using Cards.API.MVC.Controllers;
 using Cards.Data;
 using Cards.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +32,7 @@ namespace Cards.Tests.API
         }
 
         [Fact]
-        public void GetCards_should_return_a_collection_of_cards_with_ok()
+        public async Task GetCards_should_return_a_collection_of_cards_with_ok()
         {
             // arrange
             var cards = new[]
@@ -43,12 +43,12 @@ namespace Cards.Tests.API
 
             _mockCardsRepository
                 .Setup(mock => mock.GetCardCollection())
-                .Returns(() => cards);
+                .ReturnsAsync(() => cards);
             
             var sut = CreateSUT();
 
             // act
-            var result = sut.GetCards();
+            var result = await sut.GetCards();
 
             // assert
             result.Should().NotBeNull();

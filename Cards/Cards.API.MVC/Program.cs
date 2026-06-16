@@ -1,4 +1,4 @@
-using Cards.API.Health;
+using Cards.API.MVC.Health;
 using Cards.Data;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;

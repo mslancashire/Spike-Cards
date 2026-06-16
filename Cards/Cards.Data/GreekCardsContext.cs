@@ -7,11 +7,11 @@ namespace Cards.Data;
 
 public class GreekCardsContext : ICardsContext
 {
-    private IList<BasicCard> _cardCollection;
+    private readonly List<BasicCard> _cardCollection;
 
     public GreekCardsContext()
     {
-        _cardCollection = new List<BasicCard>();
+        _cardCollection = [];
 
         var cardNames = GreekCardNames.Instance;
         var rdNum = new Random();
