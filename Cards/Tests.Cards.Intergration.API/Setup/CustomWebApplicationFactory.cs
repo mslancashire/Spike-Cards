@@ -9,7 +9,7 @@ namespace Tests.Cards.Integration.API.Setup;
 
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public IConfiguration Configuration { get; private set; }
+    public IConfiguration? Configuration { get; private set; }
     
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {

@@ -1,6 +1,6 @@
 ﻿using Cards.Model;
 
-namespace Cards.Tests.Model;
+namespace Tests.Cards.Basic.Model;
 
 public class CardTests
 {

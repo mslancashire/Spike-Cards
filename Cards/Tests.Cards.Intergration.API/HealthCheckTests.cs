@@ -10,14 +10,16 @@ public class HealthCheckTests : BaseIntegrationTestFixture
     {
     }
 
-    [Fact]
-    public async Task HealthCheck()
+    [Theory]
+    [InlineData("ready")]
+    [InlineData("live")]
+    public async Task HealthCheck(string type)
     {
         // arrange
         var cancellationToken = CancellationToken.None;
 
         // act
-        var response = await _client.GetAsync("/_health", cancellationToken);
+        var response = await _client.GetAsync($"/healthz/{type}", cancellationToken);
 
         // assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);

@@ -1,0 +1,5 @@
+﻿@Cards.API.Minimal_HostAddress = https://localhost:7280
+
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/get-cards
+
+###
