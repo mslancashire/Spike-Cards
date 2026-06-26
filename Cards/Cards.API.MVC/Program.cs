@@ -1,11 +1,11 @@
-using Cards.API.Common.Health;
+using Cards.API.Common.HealthChecks;
 using Cards.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+// application settings, user secrets and environmental variables added by default.
 
-// Add services to the container.
-
+// add services to the container.
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>

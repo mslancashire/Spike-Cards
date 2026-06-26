@@ -1,0 +1,49 @@
+services:
+  postgres-db:
+    image: postgres:17-alpine
+    container_name: dotnet_postgres_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+          - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: dotnet_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  migration-runner:
+    image: mcr.microsoft.com/dotnet/sdk:10.0
+    container_name: dotnet_migration_runner
+    volumes:
+      - .:/src
+    working_dir: /src
+    environment:
+      - ConnectionStrings__DefaultConnection=${LOCAL_CONNECTION_STRING}
+    command: >
+      bash -c "bash -c "dotnet tool restore &&
+                dotnet ef database update --project /Cards.Data/Cards.Data.csproj --startup-project /Cards.API.Minimal/Cards.API.Minimal.csproj"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

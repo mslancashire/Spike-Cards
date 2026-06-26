@@ -1,7 +1,7 @@
 ﻿using Cards.Data;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 
-namespace Cards.API.Common.Health;
+namespace Cards.API.Common.HealthChecks;
 
 public class CardsDataSourceHealthCheck : IHealthCheck
 {

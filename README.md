@@ -26,3 +26,24 @@ Needs readjusting for more REST like end points.
 - GET => `/api/cards/serach/by-health/{health:int}`
 - GET => `/api/cards/serach/by-attack/{attack:int}`
 - GET => `/api/cards/serach/by-description/{description}`
+
+## Data
+
+### Migrations
+
+Can be found in the Cards.Data project.
+
+See below for CLI command to run it.
+
+#### Install Tooling
+
+> `dotnet tool install --global dotnet-ef`
+
+#### Create
+
+> `dotnet ef migrations add InitialCreate --project Cards.Data --startup-project Cards.API.Minimal`
+
+#### Migrate
+
+> `dotnet ef migrations bundle --project Cards.Data --startup-project Cards.API.Minimal --output efbundle`
+
