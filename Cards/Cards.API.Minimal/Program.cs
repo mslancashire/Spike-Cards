@@ -19,7 +19,7 @@ builder.Services.SetupDB(builder.Configuration);
 builder.Services.Configure<SearchValidationSettings>(
     builder.Configuration.GetSection("ValidationSettings"));
 
-var commonAssembly = Assembly.GetAssembly(typeof(Cards.API.Common.AssemblyReference));
+var commonAssembly = Assembly.GetAssembly(typeof(Cards.API.Common.AssemblyReference)) ?? throw new ApplicationException("Common Assembly not found");
 
 // api boiler plate
 builder.Services.AddValidatorsFromAssembly(commonAssembly, includeInternalTypes: true);
@@ -115,17 +115,17 @@ static async Task<IResult> SearchByHealth([AsParameters] SearchByHealth request,
 static async Task<IResult> SearchByAttack([AsParameters] SearchByAttack request, [FromServices] IValidator<SearchByAttack> validator, ICardsRepository repository)
     => await HandleSearch(request, r => r.FindCardsByAttack(request.Attack), validator, repository);
 
-static async Task<IResult> SearchByDescription([AsParameters] SearchByDescription request, [FromServices] IValidator<SearchByDescription> validator, ICardsRepository repository)
+static async Task<IResult> SearchByDescription([AsParameters] SearchByDescription request, [FromServices] IValidator<SearchByDescription>? validator, ICardsRepository repository)
     => await HandleSearch(request, r => r.FindCardsByDescription(request.Description), validator, repository);
 
 static async Task<IResult> HandleSearch<TSearchType>(
     TSearchType request,
     Func<ICardsRepository, Task<IEnumerable<BasicCard>>> searchAction,
-    IValidator<TSearchType> validator,
+    IValidator<TSearchType>? validator,
     ICardsRepository repository)
 {
-    var validationResult = validator.Validate(request);
-    if (validationResult.IsValid == false)
+    var validationResult = validator?.Validate(request);
+    if (validationResult?.IsValid == false)
     {
         return TypedResults.BadRequest(validationResult.ToProblemDetails(nameof(SearchByName)));
     }
