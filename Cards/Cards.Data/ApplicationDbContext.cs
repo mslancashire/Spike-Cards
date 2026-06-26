@@ -15,7 +15,7 @@ public class ApplicationDbContext : DbContext
     {
         modelBuilder.Entity<CardEntity>(entity =>
         {
-            entity.ToTable("cards").HasKey("id");
+            entity.ToTable("cards").HasKey(p => p.Id);
             entity.Property(p => p.Id).ValueGeneratedOnAdd().HasColumnName("id");
             entity.Property(p => p.DateCreated).HasColumnName("date_created");
             entity.Property(p => p.DateModified).HasColumnName("date_modified");
@@ -23,7 +23,9 @@ public class ApplicationDbContext : DbContext
                 v => JsonConvert.SerializeObject(v),
                 v => JsonConvert.DeserializeObject<Card>(v));
         });
+
+        modelBuilder.HasPostgresExtension("uuid-ossp");
     }
 
-    public DbSet<CardEntity> Cards { get; set; }
+    public DbSet<CardEntity> Cards => Set<CardEntity>();
 }

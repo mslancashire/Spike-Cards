@@ -1,0 +1,28 @@
+﻿@Cards.API.Minimal_HostAddress = https://localhost:7280
+
+### 200 => Get All Cards
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/get-cards
+
+### 200 => Search By Name
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/search/by-name/phoebe
+
+### 400 => Search By Name using bad characters
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/search/by-name/hh&shfdhsjk
+
+### 200 => Search By Cost
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/search/by-cost/1
+
+### 400 => Search By Cost
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/search/by-cost/11
+
+### 200 => Search By Health
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/search/by-health/1
+
+### 200 => Search By Attack
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/search/by-attack/1
+
+### 400 => Search By Attack
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/search/by-attack/11
+
+### 200 => Search By Description
+GET {{Cards.API.Minimal_HostAddress}}/api/cards/search/by-description/goddess

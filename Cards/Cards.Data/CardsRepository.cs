@@ -8,7 +8,7 @@ namespace Cards.Data;
 
 public class CardsRepository : ICardsRepository
 {
-    private ICardsContext _cardsContext;
+    private readonly ICardsContext _cardsContext;
 
     public CardsRepository(ICardsContext cardsContext)
     {
