@@ -47,3 +47,20 @@ See below for CLI command to run it.
 
 > `dotnet ef migrations bundle --project Cards.Data --startup-project Cards.API.Minimal --output efbundle`
 
+## Docker
+
+For starting from scratch:
+
+> `docker compose up`
+
+For just rebuilding a single image:
+
+> `docker compose build cards.application.setup`
+> `docker compose up`
+
+For rebuilding all the images:
+
+> `docker compose up --build`
+> `docker compose build --no-cache && docker compose up`
+
+

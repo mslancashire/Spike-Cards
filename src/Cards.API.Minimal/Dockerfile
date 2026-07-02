@@ -12,19 +12,18 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Cards.API.Minimal/Cards.API.Minimal.csproj", "Cards.API.Minimal/"]
-COPY ["Cards.API.Common/Cards.API.Common.csproj", "Cards.API.Common/"]
-COPY ["Cards.Data/Cards.Data.csproj", "Cards.Data/"]
-COPY ["Cards.Model/Cards.Model.csproj", "Cards.Model/"]
-RUN dotnet restore "./Cards.API.Minimal/Cards.API.Minimal.csproj"
+COPY ["src/Cards.API.Minimal/Cards.API.Minimal.csproj", "src/Cards.API.Minimal/"]
+COPY ["src/Cards.API.Common/Cards.API.Common.csproj", "src/Cards.API.Common/"]
+COPY ["src/Cards.Data/Cards.Data.csproj", "src/Cards.Data/"]
+COPY ["src/Cards.Model/Cards.Model.csproj", "src/Cards.Model/"]
+RUN dotnet restore "./src/Cards.API.Minimal/Cards.API.Minimal.csproj"
 COPY . .
-WORKDIR "/src/Cards.API.Minimal"
-RUN dotnet build "./Cards.API.Minimal.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./src/Cards.API.Minimal/Cards.API.Minimal.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # This stage is used to publish the service project to be copied to the final stage
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Cards.API.Minimal.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./src/Cards.API.Minimal/Cards.API.Minimal.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
 FROM base AS final

@@ -1,9 +1,12 @@
+name: cards-application
+
 services:
   cards.api.minimal:
     image: ${DOCKER_REGISTRY-}cardsapiminimal
+    container_name: dotnet_cards_api_minimal
     build:
-      context: .
-      dockerfile: ../../src/Cards.API.Minimal/Dockerfile
+      context: ../..
+      dockerfile: src/Cards.API.Minimal/Dockerfile
     ports:
       - 5000:8080
       - 5001:8081
@@ -37,7 +40,7 @@ services:
     networks:
       - "default"
 
-  cards.admin.db:
+  cards.db.admin:
     image: dpage/pgadmin4
     container_name: dotnet_pgadmin
     environment:
@@ -52,22 +55,19 @@ services:
     networks:
       - "default"
 
-  # migration-runner:
-  #   image: mcr.microsoft.com/dotnet/sdk:10.0
-  #   container_name: dotnet_migration_runner
-  #   volumes:
-  #     - .:/src
-  #   working_dir: /src
-  #   environment:
-  #     - ConnectionStrings__DefaultConnection=${LOCAL_CONNECTION_STRING}
-  #   command: >
-  #     bash -c "bash -c "dotnet tool restore &&
-  #               dotnet ef database update --project /Cards.Data/Cards.Data.csproj --startup-project /Cards.API.Minimal/Cards.API.Minimal.csproj"
-  #   depends_on:
-  #     cards.db:
-  #       condition: service_healthy
-  #   networks:
-  #     - "default"
+  cards.application.setup:
+    image: ${DOCKER_REGISTRY-}appsetup
+    container_name: dotnet_app_setup
+    build:
+      context: ../..
+      dockerfile: build/AppSetup/Dockerfile
+    environment:
+     - ConnectionStrings__DefaultConnection=Host=cards.db;Port=5432;Database=${POSTGRES_DB};Username=${POSTGRES_USER};Password=${POSTGRES_PASSWORD};Include Error Detail=true
+    depends_on:
+      cards.db:
+        condition: service_healthy
+    networks:
+      - "default"
 
 networks:
   default:
