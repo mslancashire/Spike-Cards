@@ -3,7 +3,7 @@ services:
     image: ${DOCKER_REGISTRY-}cardsapiminimal
     build:
       context: .
-      dockerfile: Cards.API.Minimal/Dockerfile
+      dockerfile: ../../src/Cards.API.Minimal/Dockerfile
     ports:
       - 5000:8080
       - 5001:8081
