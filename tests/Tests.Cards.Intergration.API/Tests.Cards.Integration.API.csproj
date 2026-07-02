@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cards.API.Minimal\Cards.API.Minimal.csproj" />
+    <ProjectReference Include="..\..\src\Cards.API.Minimal\Cards.API.Minimal.csproj" />
   </ItemGroup>
 
   <ItemGroup>
