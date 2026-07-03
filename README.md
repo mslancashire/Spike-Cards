@@ -9,10 +9,10 @@ This is a spike project that contains an application to learn new technology, pr
 
 ## Currently Working On
 
-- [ ] Implementing Minimal API.
+- [x] Implementing Minimal API.
 - [ ] CLI App needs re-adjusting and adding into solution.
-- [ ] Implementing DB
-- [ ] Implementing Docker
+- [x] Implementing DB
+- [x] Implementing Docker
 - [ ] Implementing DB Test Containers
 - [ ] Implement Infra as Code using Pulumi to AWS / Azure
 
