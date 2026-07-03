@@ -1,5 +1,6 @@
 using Cards.API.Common.Documentation;
 using Cards.API.Common.DTO.Search;
+using Cards.API.Common.Exceptions;
 using Cards.API.Common.HealthChecks;
 using Cards.API.Common.Validation;
 using Cards.Data;
@@ -12,6 +13,8 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 // application settings, user secrets and environmental variables added by default.
 
+var commonAssembly = Assembly.GetAssembly(typeof(Cards.API.Common.AssemblyReference)) ?? throw new ApplicationException("Common Assembly not found");
+
 // db
 builder.Services.SetupDB(builder.Configuration);
 
@@ -19,7 +22,8 @@ builder.Services.SetupDB(builder.Configuration);
 builder.Services.Configure<SearchValidationSettings>(
     builder.Configuration.GetSection("ValidationSettings"));
 
-var commonAssembly = Assembly.GetAssembly(typeof(Cards.API.Common.AssemblyReference)) ?? throw new ApplicationException("Common Assembly not found");
+// exception handling services
+builder.Services.SetupExceptionHandler();
 
 // api boiler plate
 builder.Services.AddValidatorsFromAssembly(commonAssembly, includeInternalTypes: true);
@@ -46,6 +50,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapHealthAndLiveChecks();
+app.SetupExceptionHandling();
 
 // basic cards layer
 app.MapGet("/api/cards/get-cards", GetAll)

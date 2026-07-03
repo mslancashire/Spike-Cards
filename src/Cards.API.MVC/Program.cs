@@ -1,3 +1,4 @@
+using Cards.API.Common.Exceptions;
 using Cards.API.Common.HealthChecks;
 using Cards.Data;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHealthAndLiveChecks();
+builder.Services.SetupExceptionHandler();
 
 // add data dependencies
 builder.Services.AddScoped<ICardsRepository, CardsRepository>();
@@ -30,6 +32,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.SetupExceptionHandling();
 
 app.UseHttpsRedirection();
 
