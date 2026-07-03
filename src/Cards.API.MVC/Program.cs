@@ -1,20 +1,21 @@
 using Cards.API.Common.Exceptions;
 using Cards.API.Common.HealthChecks;
 using Cards.Data;
-using Microsoft.EntityFrameworkCore;
+using Cards.Data.Helpers;
+using FluentValidation;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 // application settings, user secrets and environmental variables added by default.
 
-// add services to the container.
-builder.Services.AddControllers();
+var commonAssembly = Assembly.GetAssembly(typeof(Cards.API.Common.AssemblyReference)) ?? throw new ApplicationException("Common Assembly not found");
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+// add services to the container.
+builder.Services.SetupDB(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddValidatorsFromAssembly(commonAssembly, includeInternalTypes: true);
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHealthAndLiveChecks();

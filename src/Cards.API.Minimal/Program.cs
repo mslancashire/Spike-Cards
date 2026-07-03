@@ -7,7 +7,6 @@ using Cards.Data;
 using Cards.Data.Helpers;
 using Cards.Model;
 using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +53,7 @@ app.SetupExceptionHandling();
 
 // basic cards layer
 app.MapGet("/api/cards/get-cards", GetAll)
+    .WithValidation()
     .AllowAnonymous()
     .AddStandardData<IEnumerable<BasicCard>>(
         "Get All Cards",
@@ -63,6 +63,7 @@ app.MapGet("/api/cards/get-cards", GetAll)
 
 // card search layer
 app.MapGet("/api/cards/search/by-name/{Name}", SearchByName)
+    .WithValidation()
     .AllowAnonymous()
     .AddStandardData<IEnumerable<BasicCard>>(
         "Search Cards By Name",
@@ -71,6 +72,7 @@ app.MapGet("/api/cards/search/by-name/{Name}", SearchByName)
     );
 
 app.MapGet("/api/cards/search/by-cost/{Cost:int}", SearchByCost)
+    .WithValidation()
     .AllowAnonymous()
     .AddStandardData<IEnumerable<BasicCard>>(
         "Search Cards By Cost",
@@ -79,6 +81,7 @@ app.MapGet("/api/cards/search/by-cost/{Cost:int}", SearchByCost)
     );
 
 app.MapGet("/api/cards/search/by-health/{Health:int}", SearchByHealth)
+    .WithValidation()
     .AllowAnonymous()
     .AddStandardData<IEnumerable<BasicCard>>(
         "Search Cards By Health",
@@ -87,6 +90,7 @@ app.MapGet("/api/cards/search/by-health/{Health:int}", SearchByHealth)
     );
 
 app.MapGet("/api/cards/search/by-attack/{Attack:int}", SearchByAttack)
+    .WithValidation()
     .AllowAnonymous()
     .AddStandardData<IEnumerable<BasicCard>>(
         "Search Cards By Attach",
@@ -95,6 +99,7 @@ app.MapGet("/api/cards/search/by-attack/{Attack:int}", SearchByAttack)
     );
 
 app.MapGet("/api/cards/search/by-description/{Description}", SearchByDescription)
+    .WithValidation()
     .AllowAnonymous()
     .AddStandardData<IEnumerable<BasicCard>>(
         "Search Cards By Description",
@@ -108,33 +113,26 @@ app.Run();
 static async Task<IResult> GetAll(ICardsRepository repository)
     => TypedResults.Ok(await repository.GetCardCollection());
 
-static async Task<IResult> SearchByName([AsParameters] SearchByName request, [FromServices] IValidator<SearchByName> validator, ICardsRepository repository)
-    => await HandleSearch(request, r => r.FindCardsByName(request.Name), validator, repository);
+static async Task<IResult> SearchByName([AsParameters] SearchByName request, ICardsRepository repository)
+    => await HandleSearch(request, r => r.FindCardsByName(request.Name), repository);
 
-static async Task<IResult> SearchByCost([AsParameters] SearchByCost request, [FromServices] IValidator<SearchByCost> validator, ICardsRepository repository)
-    => await HandleSearch(request, r => r.FindCardsByCost(request.Cost), validator, repository);
+static async Task<IResult> SearchByCost([AsParameters] SearchByCost request, ICardsRepository repository)
+    => await HandleSearch(request, r => r.FindCardsByCost(request.Cost), repository);
 
-static async Task<IResult> SearchByHealth([AsParameters] SearchByHealth request, [FromServices] IValidator<SearchByHealth> validator, ICardsRepository repository)
-    => await HandleSearch(request, r => r.FindCardsByHealth(request.Health), validator, repository);
+static async Task<IResult> SearchByHealth([AsParameters] SearchByHealth request, ICardsRepository repository)
+    => await HandleSearch(request, r => r.FindCardsByHealth(request.Health), repository);
 
-static async Task<IResult> SearchByAttack([AsParameters] SearchByAttack request, [FromServices] IValidator<SearchByAttack> validator, ICardsRepository repository)
-    => await HandleSearch(request, r => r.FindCardsByAttack(request.Attack), validator, repository);
+static async Task<IResult> SearchByAttack([AsParameters] SearchByAttack request, ICardsRepository repository)
+    => await HandleSearch(request, r => r.FindCardsByAttack(request.Attack), repository);
 
-static async Task<IResult> SearchByDescription([AsParameters] SearchByDescription request, [FromServices] IValidator<SearchByDescription>? validator, ICardsRepository repository)
-    => await HandleSearch(request, r => r.FindCardsByDescription(request.Description), validator, repository);
+static async Task<IResult> SearchByDescription([AsParameters] SearchByDescription request, ICardsRepository repository)
+    => await HandleSearch(request, r => r.FindCardsByDescription(request.Description), repository);
 
 static async Task<IResult> HandleSearch<TSearchType>(
     TSearchType request,
     Func<ICardsRepository, Task<IEnumerable<BasicCard>>> searchAction,
-    IValidator<TSearchType>? validator,
     ICardsRepository repository)
 {
-    var validationResult = validator?.Validate(request);
-    if (validationResult?.IsValid == false)
-    {
-        return TypedResults.BadRequest(validationResult.ToProblemDetails(nameof(SearchByName)));
-    }
-
     return TypedResults.Ok(await searchAction(repository));
 }
 
