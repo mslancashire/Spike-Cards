@@ -37,6 +37,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSetup", "build\AppSetup\
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "build\Docker\docker-compose.dcproj", "{81DDED9D-158B-E303-5F62-77A2896D2A5A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LoadTests", "LoadTests", "{299D0E9C-FCBA-4932-82E1-3A03C9CAD373}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Tests.Load\api-test-v1-get-all-cards.js = tests\Tests.Load\api-test-v1-get-all-cards.js
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,6 +103,7 @@ Global
 		{60F59837-71A5-49F4-BE7B-07386DC56F04} = {2702F00E-8A12-440B-8BED-5C2D381D8E56}
 		{3F9E5D0E-AECF-5762-039E-87549BA0234D} = {2EF62965-880D-42F7-BCCB-AF2278E8CADA}
 		{81DDED9D-158B-E303-5F62-77A2896D2A5A} = {2EF62965-880D-42F7-BCCB-AF2278E8CADA}
+		{299D0E9C-FCBA-4932-82E1-3A03C9CAD373} = {12459C76-D35A-4DFC-840D-4EBB4F6426B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1BC95425-0CBA-4908-A17E-9656F9CD05CD}
